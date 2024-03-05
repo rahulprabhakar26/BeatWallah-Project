@@ -1,0 +1,5 @@
+package com.kodnest.tunehub.entity;
+
+public class PlayList {
+
+}

@@ -1,0 +1,26 @@
+package com.kodnest.tunehub.serviceimpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.kodnest.tunehub.entity.PlayList;
+import com.kodnest.tunehub.repository.PlaylistRepository;
+import com.kodnest.tunehub.service.PlayListService;
+
+@Service
+public class PlaylistServiceImpl implements PlayListService {
+
+    private final PlaylistRepository playlistRepository;
+
+    @Autowired
+    public PlaylistServiceImpl(PlaylistRepository playlistRepository) {
+        this.playlistRepository = playlistRepository;
+    }
+
+    public PlayList updatePlaylistName(Long id, String newName) {
+        PlayList playlist = ((PlayList) playlistRepository.findById(id))
+                .orElseThrow(() -> new IllegalArgumentException("Invalid playlist Id:" + id));
+        playlist.setName(newName);
+        return playlistRepository.save(playlist);
+    }
+}

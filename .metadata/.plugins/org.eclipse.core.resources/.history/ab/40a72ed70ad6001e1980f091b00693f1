@@ -1,0 +1,74 @@
+package com.kodnest.tunehub.controller;
+
+import java.security.Principal;
+import java.util.List;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.kodnest.tunehub.entity.Song;
+import com.kodnest.tunehub.service.SongService;
+import com.kodnest.tunehub.service.UserService;
+import com.kodnest.tunehub.serviceimpl.UserSeviceImpl;
+
+@Controller
+public class SongController {
+	
+	@Autowired
+	SongService songService;
+	
+	@PostMapping("/addSong")
+	 public String addSongs(@ModelAttribute Song song) {
+//		songService.addSongs(song);
+//		return "NewSong";
+		
+		//name taken from newSong form 
+		  String name = song.getName();
+		
+		//checking if the name as entered in newsong form is present in DB or not.
+	boolean status = songService.nameExists(name);
+	if(status == false) {
+		songService.addSongs(song);
+		System.out.println("Song added");
+	}
+	else {
+		System.out.println("Song alredy exsits");	 
+	}
+	return "AdminHome";	
+	 }
+	
+//	@GetMapping("/viewsongs")
+//	public String viewSong() {
+//		songService.viewSong();
+//		return "AdminHome";
+//		
+//	}
+	
+	@GetMapping("/viewsongs")
+	public String viewSong(Model model) {
+		List<Song> songList=songService.fetchAllSongs();
+		model.addAttribute("songs", songList);
+		
+//		System.out.println(songList);
+		return "displaysongs";
+		
+	}
+	@GetMapping("/playsongs")
+	public String playSongs(Model model ,Principal principal) {
+//		boolean premium =false;
+		 boolean premium = UserSeviceImpl.isUserPremium(principal.getName()); // Assuming isUserPremium method checks if the user has a premium subscription
+		if(premium) {
+		List<Song> songList=songService.fetchAllSongs();
+		model.addAttribute("songs", songList);
+		return "displaysongs";
+		}else {
+			return "subscriptionform";
+		}
+	}
+
+}

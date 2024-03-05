@@ -1,0 +1,21 @@
+package com.kodnest.tunehub.entity;
+import javax.persistence.*;
+
+import jakarta.persistence.Entity;
+
+import java.util.Set;
+
+@Entity
+public class Playlist {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
+    @ManyToMany
+    private Set<Song> songs;
+
+    // Getters and setters
+}

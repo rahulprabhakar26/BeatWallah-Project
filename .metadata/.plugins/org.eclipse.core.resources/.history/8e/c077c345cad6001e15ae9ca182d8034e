@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Customer Home</title>
+</head>
+<body>
+<p> CUSTOMER HOME</p>
+
+
+<div class="non-premium">
+
+	
+	 <form action="pay">
+	<input type="submit" value="GET PREMIUM">
+	</form> 
+	<br/>
+	
+	 <form action="logout">
+	<input type="submit" value="LOGOUT">
+	</form> 
+	</div>
+	
+	<div class="premium">
+	
+	
+	</div>
+	
+</body>
+</html>

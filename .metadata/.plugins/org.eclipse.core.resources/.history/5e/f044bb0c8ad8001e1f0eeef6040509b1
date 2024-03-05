@@ -1,0 +1,11 @@
+package com.kodnest.tunehub.repository;
+
+import com.kodnest.tunehub.entity.PlayList;
+
+public interface PlaylistRepository {
+
+	PlayList findById(Long id);
+
+	PlayList save(PlayList playlist);
+
+}

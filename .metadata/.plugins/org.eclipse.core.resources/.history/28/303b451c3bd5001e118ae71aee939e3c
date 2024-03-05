@@ -1,0 +1,13 @@
+package com.kodnest.tunehub.controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class PaymentController {
+	
+	
+	public String pay() {
+		return "pay";
+	}
+
+}

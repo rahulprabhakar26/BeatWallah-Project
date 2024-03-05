@@ -1,0 +1,5 @@
+package com.kodnest.tunehub.serviceimpl;
+
+public class PlaylistServiceImpl {
+
+}

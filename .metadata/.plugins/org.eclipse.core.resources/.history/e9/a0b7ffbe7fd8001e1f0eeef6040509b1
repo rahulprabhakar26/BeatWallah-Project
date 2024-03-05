@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table border="2">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>NAME</th>
+				<th>SONG NAME</th>
+			
+
+
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="song  :${playlist}">
+				<td th:text="${song.id}"></td>
+				<td th:text="${song.name}"></td>
+				<td>
+					<ul>
+						<li th:each="s1: ${song.songs}">
+						<span th:text="${s1.name}"></span>
+						
+  <div th:each="s:${songS}">
+  <input type="checkbox" th:name="songS" th:value="${s.id}">
+  <label th:text="${s.name}"></label>
+  
+  </div>
+  
+  <input type="submit" value="ADD PLAYLIST">
+  
+  </form>
+  
+</body>
+</html>

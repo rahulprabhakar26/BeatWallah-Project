@@ -1,0 +1,74 @@
+package com.kodnest.tunehub.serviceimpl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.kodnest.tunehub.entity.PlayList;
+import com.kodnest.tunehub.repository.PlayListRepository;
+import com.kodnest.tunehub.service.PlayListService;
+
+@Service
+public class PlayListServiceImpl implements PlayListService {
+
+	@Autowired
+	PlayListRepository playlistRepo;
+
+	@Override
+	public void addplaylist(PlayList playlist) {
+		playlistRepo.save(playlist);
+		
+	}
+
+	
+	@Override
+	public List<PlayList> fetchAllSongs() {
+		   List<PlayList> songs = playlistRepo.findAll();
+			return songs;
+		}
+
+
+	@Override
+	public List<PlayList> fetchAllPlayList() {
+		List<PlayList> playL = playlistRepo.findAll();
+		return playL;
+	}
+
+
+	@Override
+	public String updateplayList(Integer id, String newName) {
+		   PlayList playlist = playlistRepo.findById(id).orElse(null);
+	        if (playlist == null) {
+	            throw new RuntimeException("Playlist not found");
+	        }
+	        playlist.setName(newName);
+	       PlayList pla= playlistRepo.save(playlist);
+	       return "upadte Success";
+	    }
+
+//	public PlayList updatePlaylistName(Integer id, String newName) {
+//        Optional<PlayList> playlist = playlistRepo.findById(id);
+//        if (playlist == null) {
+//            throw new RuntimeException("Playlist not found");
+//        }else {
+//        playlist.setName(newName);
+//        return playlistRepo.save(playlist);
+//    }
+//	}
+
+//    public String updatePlaylistName(Integer id, String newName) {
+//        PlayList playlist = playlistRepo.findById(id).orElse(null);
+//        if (playlist == null) {
+//            throw new RuntimeException("Playlist not found");
+//        }
+//        playlist.setName(newName);
+//       PlayList pla= playlistRepo.save(playlist);
+//       return "upadte Success";
+//    }
+
+
+		
+	}
+

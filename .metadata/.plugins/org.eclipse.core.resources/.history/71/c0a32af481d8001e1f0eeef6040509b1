@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Display PlayList</title>
+</head>
+<body>
+	<table border="2">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>NAME</th>
+				<th>SONG NAME</th>
+			   <th>Box</th>
+
+
+			</tr>
+		</thead>
+
+		<tbody>
+	
+  
+			<tr th:each="song  :${playList}">
+				<td th:text="${song.id}"></td>
+				<td th:text="${song.name}"></td>
+				<td>
+					
+						<div th:each="s1: ${song.songs}">
+						  <input type="checkbox" th:name="song" th:value="${s1.id}">
+						
+						<span th:text="${s1.name}"></span>
+						
+						
+						
+
+					
+
+				</td>
+				
+			</tr>
+
+		</tbody>
+	
+
+	</table>
+</body>
+</html>
