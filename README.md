@@ -1,1 +1,1 @@
-This is a TuneHub-backup . TunHub is a music application developed using Java, SpringBoot, Hibernate , Thymeleaf , Html, Css, JavaScript and React.js.
+This is BeatWallah - Music Application project.BeatWallah is a music application developed using Java, SpringBoot, Hibernate, Thymeleaf, Html, CSS, JavaScript, and React.js.
